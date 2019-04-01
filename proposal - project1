@@ -1,12 +1,12 @@
 //PROPOSAL - PROJECT 1
 
-My game will be a reaction based game. I plan to have a colored screen, with a small dot on it. You will have 30 seconds to click the dot as many times as possible, with it appearing for less and less time as you click more dots. In the end, it will log the score you got. I plan to decrease the time it appears on screen by .05% every time it is clicked, so the first dot will appear for a second, while the second .95 seconds, etc.
+My game will be a reaction based game. I plan to have a colored screen, with a small dot on it. You will have 30 seconds to click the dot as many times as possible, with it appearing for less and less time as you click more dots. In the end, it will log the score you got. I plan to decrease the time it appears on screen by .05% every time it is clicked, so the first dot will appear for a second, while the second .95 seconds, etc. When the dot is clicked or disappears, a new dot will appear immediately, and this will go on until the time reaches 30 seconds.
 
 There will be a replay button that resets the game board and starts the game, and there is no winning, only to get the highest score possible. To start, I am considering making a start button or possibly starting when clicking on a dot on the screen or anywhere on the screen.
 
 I plan to use Javascript mainly, with a bit of CSS and HTML. I believe some of the problems I will have are declaring sufficient functions to run the game. I will try to solve the problem by declaring a function, and seeing if I could break it down more and more, until it can no longer be broken down into a simple function.
 
-I believe I will also have issues having the dot appear and disappear randomly, and implementing a function to decrease the time the dot appears on the screen. I'll try to solve the problem by 
+I believe I will also have issues having the dot appear and disappear randomly, and implementing a function to decrease the time the dot appears on the screen. I'll try to solve the problem by possibly starting at 1 second, then multiplying that by .95 or .90 each time, to decrease the time appeared on screen. 
 
 function dotAppear(dot) {
 	
