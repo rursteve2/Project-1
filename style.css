@@ -3,6 +3,8 @@
 	width: 600px;
 	background-color: black;
 	display: inline-block;
+	opacity: 1;
+	border: 15px solid black;
 }
 body {
 	background-color: #f4f4f4;
@@ -22,15 +24,41 @@ h2 {
 	margin-top: -30px;
 	display: inline-block;
 	text-align: center;
-	padding-right: 50px;
+	padding-right: 10px;
+	float: left;
+	padding-left: 50px;
 }
 #timeleft {
-
+	font-size: 20px;
 }
+
 .dot {
-	color: white;
+	background-color: white;
 	border-radius: 50%;
 	height: 15px;
 	width: 15px;
-	display: inline;
+	position: relative;
+	/*display: inline;*/
+	/*z-index: 1;*/
+	/*left: 0px;*/
+}
+#buttons {
+	display: inline-block;
+	align-content: right;
+}
+#easybutton {
+	background-color: green;
+	color: white;
+}
+#normalbutton {
+	background-color: blue;
+	color: white;
+}
+#hardbutton {
+	background-color: red;
+	color: white;
+}
+#extremebutton {
+	background-color: black;
+	color: white;
 }
