@@ -6,6 +6,10 @@ let score = document.querySelector("#score")
 let makeDot = document.createElement("div")
 let interval = 1000;
 let button = document.getElementsByClassName("button")
+let startModal = document.querySelector(".modal-start")
+let endModal = document.querySelector(".modal-end")
+let playButton = document.getElementById("playbutton")
+let playAgainButton = document.getElementById("playagain")
 function createDot() {
 	gameSpace.appendChild(makeDot)
 	makeDot.classList.add("dot")
@@ -36,7 +40,7 @@ function timer() {
 		timeLeft.innerHTML -= 1
 		if (timeLeft.innerHTML == 0) {
 			clearInterval(time)
-			alert("Finished!")
+			showEndModal()
 		}
 	}, 100)
 }
@@ -71,15 +75,48 @@ function setDifficulty() {
 	document.getElementById('hardbutton').addEventListener('click', hardDifficulty)
 	document.getElementById('extremebutton').addEventListener('click', extremeDifficulty)
 }
+var decrementInterval = () => {
+	for (let i = 1500; i >= interval; i *= .95) {
+		i = interval
+	if(interval > 500) {
+		console.log(interval)
+		return interval *= .8
+		
+		} else {
+		console.log(interval)
+		return interval = 500	
+		}
+	}
+}
 function dotDisappear() {
-	console.log(timeLeft);
-	if (timeLeft.innerText > 0) {
-		let dotSpawn = setInterval(respawnDot, interval)
+	if (timeLeft.innerHTML > 0) {
+		let dotSpawn = setInterval(respawnDot, decrementInterval())
 		
 	} else {
 		clearTimeout(dotSpawn)
 	}
 }
+
+function showStartModal() {
+	if (startModal.style.display === "block") {
+		startModal.style.display = "none"
+		playGame()
+	} else {
+		playGame()
+		startModal.style.display = "none"
+	}
+}
+function showEndModal() {
+	if (timeLeft.innerHTML == 0) {
+		if (endModal.style.display == "none") {
+			location.reload()
+		} else {
+			endModal.style.display = "block"
+		}
+	}
+}
+playButton.addEventListener("click", showStartModal)
+playAgainButton.addEventListener("click", window.reload)
 
 function playGame() {
 	createDot()
@@ -87,8 +124,7 @@ function playGame() {
 	timer()
 	dotDisappear()
 	addScore()
-
 }
-playGame()
+
 // let play = window.setTimeout(playGame(), 3000)
 // window.clearTimeout(play)
