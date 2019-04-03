@@ -28,8 +28,10 @@ function addScore() {
 			dot.style.left = `${Math.floor(Math.random() * gameSpace.clientWidth)}px`
 			dot.style.top = `${Math.floor(Math.random() * gameSpace.clientHeight)}px`
 			score.innerHTML = 1 + parseInt(score.innerHTML)
+			decrementTimeout()
 		} else {
 			subtractScore()
+			decrementTimeout()
 		}
 	})
 }
@@ -42,7 +44,7 @@ function timer() {
 			clearInterval(time)
 			showEndModal()
 		}
-	}, 100)
+	}, 1000)
 }
 
 function subtractScore() {
@@ -75,25 +77,24 @@ function setDifficulty() {
 	document.getElementById('hardbutton').addEventListener('click', hardDifficulty)
 	document.getElementById('extremebutton').addEventListener('click', extremeDifficulty)
 }
-var decrementInterval = () => {
-	for (let i = 1500; i >= interval; i *= .95) {
-		i = interval
-	if(interval > 500) {
+var decrementTimeout = () => {
+	if (timeLeft.innerHTML > 0 && interval > 300) {
+		let decrement = setTimeout(respawnDot, function() {
 		console.log(interval)
-		return interval *= .8
-		
+		clearTimeout(decrement)
+		interval = interval * .95
+		return interval
+		})
 		} else {
-		console.log(interval)
-		return interval = 500	
+		return interval;
 		}
 	}
-}
 function dotDisappear() {
 	if (timeLeft.innerHTML > 0) {
-		let dotSpawn = setInterval(respawnDot, decrementInterval())
+		let dotSpawn = setInterval(respawnDot, decrementTimeout())
 		
-	} else {
-		clearTimeout(dotSpawn)
+	}  else {
+		clearInterval(dotSpawn)
 	}
 }
 
@@ -115,14 +116,17 @@ function showEndModal() {
 		}
 	}
 }
+function reloadPage() {
+	location.reload()
+}
 playButton.addEventListener("click", showStartModal)
-playAgainButton.addEventListener("click", window.reload)
+playAgainButton.addEventListener("click", reloadPage)
 
 function playGame() {
+	timer()
 	createDot()
 	setDifficulty()
-	timer()
-	dotDisappear()
+	// dotDisappear()
 	addScore()
 }
 
