@@ -38,9 +38,6 @@ h2 {
 	height: 30px;
 	width: 30px;
 	position: relative;
-	/*display: inline;*/
-	/*z-index: 1;*/
-	/*left: 0px;*/
 }
 .buttons {
 	display: inline;
@@ -114,6 +111,7 @@ h3 {
 }
 .endmodal-content {
 	background-color: white;
+	height: 75%;
 }
 #playbutton {
 	font-size: 90px;

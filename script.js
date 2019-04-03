@@ -1,15 +1,17 @@
 //script.js
-//
 let gameSpace = document.querySelector(".gamespace")
 let timeLeft = document.querySelector("#timeleft")
 let score = document.querySelector("#score")
 let makeDot = document.createElement("div")
-let interval = 1000;
+let interval = 2000;
 let button = document.getElementsByClassName("button")
 let startModal = document.querySelector(".modal-start")
 let endModal = document.querySelector(".modal-end")
 let playButton = document.getElementById("playbutton")
 let playAgainButton = document.getElementById("playagain")
+let finalScore = document.getElementById("finalscore") 
+let currentIntId;
+let dot = document.querySelector(".dot")
 function createDot() {
 	gameSpace.appendChild(makeDot)
 	makeDot.classList.add("dot")
@@ -28,10 +30,31 @@ function addScore() {
 			dot.style.left = `${Math.floor(Math.random() * gameSpace.clientWidth)}px`
 			dot.style.top = `${Math.floor(Math.random() * gameSpace.clientHeight)}px`
 			score.innerHTML = 1 + parseInt(score.innerHTML)
-			decrementTimeout()
+			// decrementTimeout()
+			clearInterval(currentIntId)
+			if(timeLeft.innerHTML>0 && interval>300) {
+			currentIntId = setInterval(respawnDot, (interval))
+			interval = interval * .96
+			console.log("hit", interval)
+			// } else {
+			// 	setInterval(respawnDot, 300)
+				// console.log(interval)
+			} else {
+				setInterval(respawnDot, 300)
+			}
 		} else {
+			clearInterval(currentIntId)
+			if(timeLeft.innerHTML>0 && interval>300) {
+			currentIntId = setInterval(respawnDot, (interval))
+			interval = interval * .96
+			console.log("missed", interval)
+			// } else {
+			// setInterval(respawnDot, (interval * .98))
+			// decrementTimeout()
+			} else {
+				setInterval(respawnDot, 300)
+			}
 			subtractScore()
-			decrementTimeout()
 		}
 	})
 }
@@ -71,32 +94,36 @@ function extremeDifficulty() {
 	dot.style.width = '15px'
 	dot.style.height = '15px'
 }
+
+function consolelog() {
+	console.log("YAYYY")
+}
 function setDifficulty() {
 	document.getElementById('easybutton').addEventListener('click', easyDifficulty)
 	document.getElementById('normalbutton').addEventListener('click', normalDifficulty)
 	document.getElementById('hardbutton').addEventListener('click', hardDifficulty)
 	document.getElementById('extremebutton').addEventListener('click', extremeDifficulty)
 }
-var decrementTimeout = () => {
-	if (timeLeft.innerHTML > 0 && interval > 300) {
-		let decrement = setTimeout(respawnDot, function() {
-		console.log(interval)
-		clearTimeout(decrement)
-		interval = interval * .95
-		return interval
-		})
-		} else {
-		return interval;
-		}
-	}
-function dotDisappear() {
-	if (timeLeft.innerHTML > 0) {
-		let dotSpawn = setInterval(respawnDot, decrementTimeout())
-		
-	}  else {
-		clearInterval(dotSpawn)
-	}
-}
+// const decrementTimeout = () => {
+// 	console.log(interval)
+// 	if (timeLeft.innerHTML>0 && interval>300) {
+// 		let decrement = setTimeout(respawnDot, function() {
+// 			console.log(interval)
+// 			clearTimeout(decrement)
+// 			interval = .95 * interval
+// 			return interval;
+// 			})
+// 	} else {
+// 		return interval;
+// 		}
+// }
+// function dotDisappear() {
+// 	if (timeLeft.innerHTML > 0) {
+// 		let dotSpawn = setInterval(respawnDot, decrementTimeout())
+// 	}  else {
+// 		clearInterval(dotSpawn)
+// 	}
+// }
 
 function showStartModal() {
 	if (startModal.style.display === "block") {
@@ -111,10 +138,16 @@ function showEndModal() {
 	if (timeLeft.innerHTML == 0) {
 		if (endModal.style.display == "none") {
 			location.reload()
+			endScore()
 		} else {
 			endModal.style.display = "block"
+			endScore()
 		}
 	}
+}
+function endScore() {
+	console.log(score)
+	finalScore.innerText = score.innerText
 }
 function reloadPage() {
 	location.reload()
@@ -122,10 +155,10 @@ function reloadPage() {
 playButton.addEventListener("click", showStartModal)
 playAgainButton.addEventListener("click", reloadPage)
 
+createDot()
+document.addEventListener("DOMContentLoaded", setDifficulty)
 function playGame() {
 	timer()
-	createDot()
-	setDifficulty()
 	// dotDisappear()
 	addScore()
 }
