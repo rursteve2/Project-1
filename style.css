@@ -120,3 +120,35 @@ h3 {
 	color: white;
 	font-family: "arial";
 }
+@media screen and (max-width: 886px) {
+	* {
+		font-size: .9rem;
+	}
+	button {
+		font-size: 13px;
+		width: 150px;
+	}
+	h3, p {
+		font-size: 35px;
+	}
+	#playbutton {
+		width: 250px;
+		font-size: 55px;
+	}
+	#starttitle {
+		font-size: 25px;
+	}
+	.buttons {
+		display: flex;
+		flex-wrap: wrap;
+		padding-top: 5px;
+		padding-bottom: 15px;
+	}
+	#score, #timeleft {
+		font-size: 30px;
+	}
+	#finalscore {
+		font-size: 40px;
+	}
+
+}

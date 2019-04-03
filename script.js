@@ -30,15 +30,12 @@ function addScore() {
 			dot.style.left = `${Math.floor(Math.random() * gameSpace.clientWidth)}px`
 			dot.style.top = `${Math.floor(Math.random() * gameSpace.clientHeight)}px`
 			score.innerHTML = 1 + parseInt(score.innerHTML)
-			// decrementTimeout()
 			clearInterval(currentIntId)
 			if(timeLeft.innerHTML>0 && interval>300) {
 			currentIntId = setInterval(respawnDot, (interval))
 			interval = interval * .96
 			console.log("hit", interval)
-			// } else {
-			// 	setInterval(respawnDot, 300)
-				// console.log(interval)
+
 			} else {
 				setInterval(respawnDot, 300)
 			}
@@ -48,9 +45,6 @@ function addScore() {
 			currentIntId = setInterval(respawnDot, (interval))
 			interval = interval * .96
 			console.log("missed", interval)
-			// } else {
-			// setInterval(respawnDot, (interval * .98))
-			// decrementTimeout()
 			} else {
 				setInterval(respawnDot, 300)
 			}
@@ -159,7 +153,6 @@ createDot()
 document.addEventListener("DOMContentLoaded", setDifficulty)
 function playGame() {
 	timer()
-	// dotDisappear()
 	addScore()
 }
 
