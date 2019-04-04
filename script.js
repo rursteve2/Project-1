@@ -12,9 +12,16 @@ let playAgainButton = document.getElementById("playagain")
 let finalScore = document.getElementById("finalscore") 
 let currentIntId;
 let dot = document.querySelector(".dot")
+let accuracyArr = []
+let accuracy = document.querySelector("#accuracy")
+let endingAccuracy = document.querySelector("#accuracyscore")
+let counter = document.querySelector("#countdown")
 function createDot() {
 	gameSpace.appendChild(makeDot)
 	makeDot.classList.add("dot")
+	let dot = document.querySelector(".dot")
+	dot.style.left = `${Math.floor(Math.random() * gameSpace.clientWidth)}px`
+	dot.style.top = `${Math.floor(Math.random() * gameSpace.clientHeight)}px`
 }
 
 function respawnDot() {
@@ -30,31 +37,51 @@ function addScore() {
 			dot.style.left = `${Math.floor(Math.random() * gameSpace.clientWidth)}px`
 			dot.style.top = `${Math.floor(Math.random() * gameSpace.clientHeight)}px`
 			score.innerHTML = 1 + parseInt(score.innerHTML)
-			clearInterval(currentIntId)
-			if(timeLeft.innerHTML>0 && interval>300) {
-			currentIntId = setInterval(respawnDot, (interval))
-			interval = interval * .96
-			console.log("hit", interval)
-
+			if(timeLeft.innerHTML>0 && interval>500) {
+				interval = interval * .98
+				console.log("hit", interval)
+				accuracyArr.push(parseInt("100"))
+				console.log("pushed")
 			} else {
-				setInterval(respawnDot, 300)
+				interval = 500
 			}
 		} else {
-			clearInterval(currentIntId)
-			if(timeLeft.innerHTML>0 && interval>300) {
-			currentIntId = setInterval(respawnDot, (interval))
-			interval = interval * .96
-			console.log("missed", interval)
+			if(timeLeft.innerHTML>0 && interval>500) {
+				interval = interval * .98
+				console.log("missed", interval)
+				accuracyArr.push(parseInt("0"))
+				console.log("unpushed")
 			} else {
-				setInterval(respawnDot, 300)
+				console.log('ye');
+				interval = 500
 			}
 			subtractScore()
 		}
+		clearInterval(currentIntId)
+		currentIntId = setInterval(respawnDot, (interval))
+		findAverage()
 	})
 }
 
+function findAverage() {
+	let total = 0;
+	for(let i = 0; i < accuracyArr.length; i++) {
+		total += accuracyArr[i]
+	}
+	let average = total / accuracyArr.length
+	// gameSpace.addEventListener('click', function(e) {
+	// 	if (e.target == dot) {
+	// 		accuracyArr.push(parseInt("100"))
+	// 		console.log("pushed")
+	// 	} else {
+	// 		accuracyArr.push(parseInt("0"))
+	// 		console.log("unpushed")
+	// 	}
+	// })
+	accuracy.innerHTML = parseInt(average)
+}
 function timer() {
-	timeLeft.innerHTML = 30;
+	timeLeft.innerHTML = 60;
 	let time = setInterval(function() {
 		timeLeft.innerHTML -= 1
 		if (timeLeft.innerHTML == 0) {
@@ -98,34 +125,20 @@ function setDifficulty() {
 	document.getElementById('hardbutton').addEventListener('click', hardDifficulty)
 	document.getElementById('extremebutton').addEventListener('click', extremeDifficulty)
 }
-// const decrementTimeout = () => {
-// 	console.log(interval)
-// 	if (timeLeft.innerHTML>0 && interval>300) {
-// 		let decrement = setTimeout(respawnDot, function() {
-// 			console.log(interval)
-// 			clearTimeout(decrement)
-// 			interval = .95 * interval
-// 			return interval;
-// 			})
-// 	} else {
-// 		return interval;
-// 		}
-// }
-// function dotDisappear() {
-// 	if (timeLeft.innerHTML > 0) {
-// 		let dotSpawn = setInterval(respawnDot, decrementTimeout())
-// 	}  else {
-// 		clearInterval(dotSpawn)
-// 	}
-// }
 
 function showStartModal() {
 	if (startModal.style.display === "block") {
-		startModal.style.display = "none"
-		playGame()
+		// startModal.style.display = "none"
+		startModal.classList.add("startanim")
+		countdown()
+		// playGame()
 	} else {
-		playGame()
-		startModal.style.display = "none"
+		startModal.classList.add("startanim")
+		// setTimeout(() => {
+		// 	startModal.style.display = "none"
+		// }, 8000)
+		countdown()
+		// playGame()
 	}
 }
 function showEndModal() {
@@ -142,6 +155,7 @@ function showEndModal() {
 function endScore() {
 	console.log(score)
 	finalScore.innerText = score.innerText
+	endingAccuracy.innerHTML = accuracy.innerHTML
 }
 function reloadPage() {
 	location.reload()
@@ -149,11 +163,26 @@ function reloadPage() {
 playButton.addEventListener("click", showStartModal)
 playAgainButton.addEventListener("click", reloadPage)
 
+function countdown() {
+	counter.style.display == "block"
+	counter.innerHTML = 5;
+		let time = setInterval(function() {
+			counter.innerHTML -= 1
+			if (counter.innerHTML == 0) {
+				counter.innerHTML = "GO!"
+				clearInterval(time)
+				counter.style.display == "none"
+				playGame()
+			}
+		}, 1500)
+}
+
 createDot()
 document.addEventListener("DOMContentLoaded", setDifficulty)
 function playGame() {
 	timer()
 	addScore()
+	// findAverage()
 }
 
 // let play = window.setTimeout(playGame(), 3000)
