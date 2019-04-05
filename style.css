@@ -5,6 +5,10 @@
 	display: inline-block;
 	opacity: 1;
 	border: 50px solid black;
+	align-items: center;
+	right: auto;
+	left: auto;
+	margin: 0 auto;
 }
 body {
 	background-color: #f4f4f4;
@@ -19,7 +23,9 @@ h2 {
 }
 #container {
 	display: flex;
+	align-content: center;
 	align-items: center;
+	/*justify-content: space-around;*/
 }
 #score {
 	text-align: center;
@@ -35,9 +41,9 @@ h2 {
 	/*padding-left: 50px;*/
 	/*padding-top: 50px;*/
 	margin: 0 auto;
-	left: 0;
-	right: 0;
-	top: 50px;
+	left: auto;
+	right: auto;
+	top: 150px;
 }
 #timeleft {
 	font-size: 20px;
@@ -64,6 +70,7 @@ h2 {
 
 }
 button {
+	font-family: 'Righteous', cursive;
 	display: flex;
 	font-size: 20px;
 	padding: 1rem 1rem;
@@ -71,19 +78,20 @@ button {
 	align-items: center;
 	justify-content: center;
 	margin: 0 auto;
+	border-radius: 30px;
 
 }
 #easybutton {
-	background-color: green;
-	color: white;
+	background-color: rgb(180, 255, 127);
+	color: black;
 }
 #normalbutton {
-	background-color: blue;
+	background-color: rgb(107, 202, 249);
 	color: white;
 }
 #hardbutton {
-	background-color: red;
-	color: white;
+	background-color: rgb(249, 119, 119);
+	color: black;
 }
 #extremebutton {
 	background-color: black;
@@ -146,6 +154,31 @@ button {
   }
 }
 
+@keyframes roadRunnerIn {
+  0% {
+    transform:translateX(-1500px) skewX(30deg) scaleX(1.3);
+  }
+  70% {
+    transform:translateX(30px) skewX(0deg) scaleX(.9);
+  }
+  100% {
+    transform:translateX(0px) skewX(0deg) scaleX(1);
+
+  }
+}
+
+@keyframes roadRunnerOut {
+  0% {
+    transform:translateX(0px) skewX(0deg) scaleX(1);
+  }
+  30% {
+    transform:translateX(-30px) skewX(-5deg) scaleX(.9);
+  }
+  100% {
+    transform:translateX(1500px) skewX(30deg) scaleX(1.3);
+    display: none;
+  }
+}
 h3 {
 	font-size: 60px;
 	margin-top: 30px;
@@ -197,31 +230,70 @@ h3 {
 	/*display: inline;*/
 }
 #playbutton {
+	font-family: 'Righteous', cursive;
 	font-size: 40px;
 	width: 450px;
 	height: 80px;
-	background-color: brown;
+	background-color: rgb(35, 19, 140);
 	color: white;
-	font-family: "arial";
+	/*font-family: "arial";*/
 }
 #percentage {
 	font-size: 40px;
 	padding-top: 2px;
+	display: inline;
 }
-#countdown {
-	font-family: 'Ropa Sans', sans-serif;
-	font-size: 300px;
+.countdown {
+	/*font-family: 'Ropa Sans', sans-serif;*/
+/*	font-size: 300px;
+	position: absolute;
+	color: rgb(34, 77, 145);
+	padding: 0px;
+  	background-color: rgba(0, 0, 0, .0);*/
+  	display: none;
+  	/*position:fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+  	text-align: center;
+  	margin: auto auto;
+  	animation: roadRunnerIn 1s forwards;*/
+}
+.addmodal {
+	/*font-family: 'Ropa Sans', sans-serif;*/
+	font-family: 'Dokdo', cursive;
+	font-size: 600px;
 	/*position: absolute;*/
 	color: rgb(34, 77, 145);
 	padding: 0px;
-  	background-color: rgba(0, 0, 0, .3);
-  	display: none;
+  	background-color: rgba(0, 0, 0, .0);
+  	display: block;
   	position:fixed;
   	top: 0;
   	left: 0;
   	width: 100%;
   	height: 100%;
   	text-align: center;
+  	margin: auto auto;
+	animation: roadRunnerIn 1s forwards;
+}
+.removemodal {
+	/*font-family: 'Ropa Sans', sans-serif;*/
+	font-family: 'Dokdo', cursive;
+	font-size: 600px;
+	color: rgb(34, 77, 145);
+	padding: 0px;
+  	background-color: rgba(0, 0, 0, .0);
+  	/*display: none;*/
+  	position:fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+  	text-align: center;
+  	margin: auto auto;
+	animation: roadRunnerOut 1s forwards;
 }
 @media screen and (max-width: 886px) {
 	* {

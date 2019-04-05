@@ -11,6 +11,7 @@ let playButton = document.getElementById("playbutton")
 let playAgainButton = document.getElementById("playagain")
 let finalScore = document.getElementById("finalscore") 
 let currentIntId;
+// let dot = document.querySelector(".dot")
 let accuracyArr = []
 let accuracy = document.querySelector("#accuracy")
 let endingAccuracy = document.querySelector("#accuracyscore")
@@ -19,7 +20,8 @@ let clickInterval;
 let clicked = true;
 let clicksound = document.querySelector("#clickpush")
 let buttonsound = document.querySelector("#butpush")
-let average = 0;
+let total = 0;
+// let arrAverage = 0;
 function createDot() {
 	gameSpace.appendChild(makeDot)
 	makeDot.classList.add("dot")
@@ -76,18 +78,15 @@ function combined() {
 
 }
 function adjustAccuracy() {
-	accuracyArr.push(parseInt("0"))
-	console.log(accuracyArr)
-	findAverage()
+	console.log(arrAverage)
 }
 function findAverage() {
 	let total = 0;
 	for(let i = 0; i < accuracyArr.length; i++) {
-		total = total + accuracyArr[i]
+		total += accuracyArr[i]
 	}
-	average = total / accuracyArr.length
+	let average = total / accuracyArr.length
 	accuracy.innerHTML = parseInt(average)
-	console.log(total)
 }
 function timer() {
 	timeLeft.innerHTML = 60;
@@ -201,4 +200,8 @@ document.addEventListener("DOMContentLoaded", setDifficulty)
 function playGame() {
 	timer()
 	addScore()
+	// findAverage()
 }
+
+// let play = window.setTimeout(playGame(), 3000)
+// window.clearTimeout(play)
