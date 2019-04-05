@@ -87,7 +87,7 @@ function timer() {
 			clearInterval(time)
 			showEndModal()
 		}
-	}, 100)
+	}, 1000)
 }
 
 function subtractScore() {
