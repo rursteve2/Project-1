@@ -15,8 +15,6 @@ let accuracyArr = []
 let accuracy = document.querySelector("#accuracy")
 let endingAccuracy = document.querySelector("#accuracyscore")
 let counter = document.querySelector(".countdown")
-let clickInterval;
-let clicked = true;
 let clicksound = document.querySelector("#clickpush")
 let buttonsound = document.querySelector("#butpush")
 let average = 0;
@@ -43,22 +41,17 @@ function addScore() {
 			score.innerHTML = 1 + parseInt(score.innerHTML)
 			if(timeLeft.innerHTML>0 && interval>500) {
 				interval = interval * .98
-				console.log("hit", interval)
 				clickpush.play()
 				accuracyArr.push(parseInt("100"))
-				console.log("pushed")
 			} else {
 				interval = 500
 			}
 		} else {
 			if(timeLeft.innerHTML>0 && interval>500) {
 				interval = interval * .98
-				console.log("missed", interval)
 				butpush.play()
 				accuracyArr.push(parseInt("0"))
-				console.log("unpushed")
 			} else {
-				console.log('ye');
 				accuracyArr.push(parseInt("0"))
 				interval = 500
 			}
@@ -66,7 +59,6 @@ function addScore() {
 		}
 		clearInterval(currentIntId)
 		currentIntId = setInterval(combined, (interval))
-		clickInterval = interval
 		findAverage()
 	})
 }
@@ -77,7 +69,6 @@ function combined() {
 }
 function adjustAccuracy() {
 	accuracyArr.push(parseInt("0"))
-	console.log(accuracyArr)
 	findAverage()
 }
 function findAverage() {
@@ -87,7 +78,6 @@ function findAverage() {
 	}
 	average = total / accuracyArr.length
 	accuracy.innerHTML = parseInt(average)
-	console.log(total)
 }
 function timer() {
 	timeLeft.innerHTML = 60;
@@ -125,9 +115,6 @@ function extremeDifficulty() {
 	dot.style.height = '15px'
 }
 
-function consolelog() {
-	console.log("YAYYY")
-}
 function setDifficulty() {
 	document.getElementById('easybutton').addEventListener('click', easyDifficulty)
 	document.getElementById('normalbutton').addEventListener('click', normalDifficulty)
@@ -137,17 +124,11 @@ function setDifficulty() {
 
 function showStartModal() {
 	if (startModal.style.display === "block") {
-		// startModal.style.display = "none"
 		startModal.classList.add("startanim")
 		countdown()
-		// playGame()
 	} else {
 		startModal.classList.add("startanim")
-		// setTimeout(() => {
-		// 	startModal.style.display = "none"
-		// }, 8000)
 		countdown()
-		// playGame()
 	}
 }
 function showEndModal() {
@@ -162,7 +143,6 @@ function showEndModal() {
 	}
 }
 function endScore() {
-	console.log(score)
 	finalScore.innerText = score.innerText
 	endingAccuracy.innerHTML = accuracy.innerHTML
 }
@@ -174,23 +154,16 @@ playAgainButton.addEventListener("click", reloadPage)
 
 function countdown() {
 	counter.setAttribute("class", "addmodal")
-	// counter.style.display = "block"
 	counter.innerHTML = 3;
 		let time = setInterval(function() {
 			counter.innerHTML -= 1
 			if (counter.innerHTML == 0) {
 				counter.innerHTML = "GO!"
-				// setTimeout(function(e) {
 				clearInterval(time)
-			// }, 500)
-				// counter.style.display = "none"
 				counter.setAttribute("class", "removemodal")
 				setTimeout(function() {
 					counter.style.display = "none"
 				}, 1000)
-
-				// counter.classList.add("removemodal")
-				// counter.style.animation = 'roadRunnerOut 1s forwards';
 				playGame()
 			}
 		}, 1500)

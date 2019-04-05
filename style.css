@@ -25,21 +25,13 @@ h2 {
 	display: flex;
 	align-content: center;
 	align-items: center;
-	/*justify-content: space-around;*/
 }
 #score {
 	text-align: center;
 	font-size: 30px;
-	/*padding-right: 90px;*/
 }
 #scorediv {
-	/*margin-top: -30px;*/
-	/*display: inline-block;*/
 	text-align: center;
-	/*padding-right: 10px;*/
-	/*float: left;*/
-	/*padding-left: 50px;*/
-	/*padding-top: 50px;*/
 	margin: 0 auto;
 	left: auto;
 	right: auto;
@@ -57,17 +49,12 @@ h2 {
 	position: relative;
 }
 .buttons {
-	/*display: inline;*/
 	padding-top: 10px;
 	padding-bottom: 20px;
-	/*table-layout: fixed;*/
-	/*border-collapse: collapse;*/
-	/*position: absolute;*/
 	left: 30px;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: space-around;
-
 }
 button {
 	font-family: 'Righteous', cursive;
@@ -79,7 +66,6 @@ button {
 	justify-content: center;
 	margin: 0 auto;
 	border-radius: 30px;
-
 }
 #easybutton {
 	background-color: rgb(180, 255, 127);
@@ -124,9 +110,7 @@ button {
 }
 
 .startanim {
-	/*transition: all 1s ease-out;*/
 	animation: unfoldOut 1s forwards;
-	/*display: none;*/
 }
 
 .modal-end {
@@ -194,7 +178,6 @@ h3 {
 	font-size: 50px;
 	margin-top: 25px;
 	margin-left: 10px;
-	/*height: 50px;*/
 }
 #endingaccuracy {
 	font-size: 40px;
@@ -227,7 +210,6 @@ h3 {
 .endmodal-content {
 	background-color: white;
 	height: 75%;
-	/*display: inline;*/
 }
 #playbutton {
 	font-family: 'Righteous', cursive;
@@ -236,7 +218,6 @@ h3 {
 	height: 80px;
 	background-color: rgb(35, 19, 140);
 	color: white;
-	/*font-family: "arial";*/
 }
 #percentage {
 	font-size: 40px;
@@ -244,27 +225,11 @@ h3 {
 	display: inline;
 }
 .countdown {
-	/*font-family: 'Ropa Sans', sans-serif;*/
-/*	font-size: 300px;
-	position: absolute;
-	color: rgb(34, 77, 145);
-	padding: 0px;
-  	background-color: rgba(0, 0, 0, .0);*/
   	display: none;
-  	/*position:fixed;
-  	top: 0;
-  	left: 0;
-  	width: 100%;
-  	height: 100%;
-  	text-align: center;
-  	margin: auto auto;
-  	animation: roadRunnerIn 1s forwards;*/
 }
 .addmodal {
-	/*font-family: 'Ropa Sans', sans-serif;*/
 	font-family: 'Dokdo', cursive;
 	font-size: 600px;
-	/*position: absolute;*/
 	color: rgb(34, 77, 145);
 	padding: 0px;
   	background-color: rgba(0, 0, 0, .0);
@@ -279,13 +244,11 @@ h3 {
 	animation: roadRunnerIn 1s forwards;
 }
 .removemodal {
-	/*font-family: 'Ropa Sans', sans-serif;*/
 	font-family: 'Dokdo', cursive;
 	font-size: 600px;
 	color: rgb(34, 77, 145);
 	padding: 0px;
   	background-color: rgba(0, 0, 0, .0);
-  	/*display: none;*/
   	position:fixed;
   	top: 0;
   	left: 0;
