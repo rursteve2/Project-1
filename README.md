@@ -11,6 +11,3 @@ Javascript, CSS, and a bit of HTML.
 
 References
 https://codepen.io/designcouch/pen/obvKxm
-
-Wireframe
-![Wireframe](https://github.com/rursteve2/Project-1/blob/prototype/Wireframe%20Project%201.png)
